@@ -7,11 +7,24 @@ local sn = ls.sn
 local fmt = require('luasnip.extras.fmt').fmt
 local add = ls.add_snippets
 
+---This stupid function is just here becouse i wanted to split by dot
+---I hate that vim.split actually uses regex now.
+local function split(inputstr, sep)
+    if sep == nil then
+        sep = "%s"
+    end
+    local list = {}
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        table.insert(list, str)
+    end
+    return list
+end
+
 add('lua', {
     s('req', fmt([[local {} = require '{}']], {
         f(function(name)
-            local parts = vim.split(name[1][1], '.')
-            return parts[#parts] or ""
+            local parts = split(name[1][1], '.')
+            return parts[#parts] or ''
         end, { 1 }), i(1)
     }))
 })
