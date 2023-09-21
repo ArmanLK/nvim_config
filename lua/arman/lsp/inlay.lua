@@ -17,6 +17,7 @@ require('inlay-hints').setup {
     },
     -- Only show inlay hints for the current line
     only_current_line = false,
+
     eol = {
         -- whether to align to the extreme right or not
         right_align = false,
