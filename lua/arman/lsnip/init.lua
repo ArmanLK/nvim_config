@@ -1,9 +1,9 @@
 local ls = require 'luasnip'
-require'arman.lsnip.lua'
-require'arman.lsnip.rust'
-require'arman.lsnip.python'
-require'arman.lsnip.node'
-require'arman.lsnip.zig'
+require 'arman.lsnip.lua'
+require 'arman.lsnip.rust'
+require 'arman.lsnip.python'
+require 'arman.lsnip.node'
+require 'arman.lsnip.zig'
 
 local set_key = vim.keymap.set
 
@@ -36,4 +36,3 @@ set_key({ 'i', 's' }, '<c-l>', function()
         ls.change_choice()
     end
 end)
-

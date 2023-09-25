@@ -1,14 +1,14 @@
 -- installing lazy if not installed
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
+    vim.fn.system {
         'git',
         'clone',
         '--filter=blob:none',
         'https://github.com/folke/lazy.nvim.git',
         '--branch=stable', -- latest stable release
         lazypath,
-    })
+    }
 end
 vim.opt.rtp:prepend(lazypath)
 local plugins = {
@@ -42,9 +42,9 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter-context',
     -- theme,
     'ellisonleao/gruvbox.nvim',
-    { 'Everblush/everblush.nvim',      as = 'everblush' },
-    { 'catppuccin/nvim',               as = 'catppuccin' },
-    { 'rose-pine/neovim',              as = 'rose-pine' },
+    { 'Everblush/everblush.nvim', as = 'everblush' },
+    { 'catppuccin/nvim', as = 'catppuccin' },
+    { 'rose-pine/neovim', as = 'rose-pine' },
     'folke/tokyonight.nvim',
     'kdheepak/monochrome.nvim',
     'ray-x/aurora',
@@ -56,4 +56,4 @@ local plugins = {
     'norcalli/nvim-colorizer.lua',
 }
 
-require 'lazy'.setup(plugins)
+require('lazy').setup(plugins)

@@ -1,5 +1,5 @@
-local cmp = require'cmp'
-cmp.setup({
+local cmp = require 'cmp'
+cmp.setup {
     snippet = {
         -- snippet engine
         expand = function(args)
@@ -10,13 +10,13 @@ cmp.setup({
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = cmp.mapping.preset.insert {
         ['<C-b>'] = cmp.mapping.scroll_docs(-10),
         ['<C-f>'] = cmp.mapping.scroll_docs(10),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<C-k>'] = cmp.mapping.confirm({ select = true }),
-    }),
+        ['<C-k>'] = cmp.mapping.confirm { select = true },
+    },
     sources = cmp.config.sources({
         { name = 'nvim_lua' },
         { name = 'nvim_lsp' },
@@ -25,5 +25,5 @@ cmp.setup({
         { name = 'path' },
     }, {
         { name = 'buffer' },
-    })
-})
+    }),
+}

@@ -11,20 +11,24 @@ local add = ls.add_snippets
 ---I hate that vim.split actually uses regex now.
 local function split(inputstr, sep)
     if sep == nil then
-        sep = "%s"
+        sep = '%s'
     end
     local list = {}
-    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+    for str in string.gmatch(inputstr, '([^' .. sep .. ']+)') do
         table.insert(list, str)
     end
     return list
 end
 
 add('lua', {
-    s('req', fmt([[local {} = require '{}']], {
-        f(function(name)
-            local parts = split(name[1][1], '.')
-            return parts[#parts] or ''
-        end, { 1 }), i(1)
-    }))
+    s(
+        'req',
+        fmt([[local {} = require '{}']], {
+            f(function(name)
+                local parts = split(name[1][1], '.')
+                return parts[#parts] or ''
+            end, { 1 }),
+            i(1),
+        })
+    ),
 })

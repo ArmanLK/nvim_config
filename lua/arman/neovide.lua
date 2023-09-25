@@ -2,7 +2,7 @@ local g = vim.g
 local opt = vim.opt
 if g.neovide then
     opt.guifont = 'Jetbrains Mono:h9'
-    g.neovide_transparency=0.75
+    g.neovide_transparency = 0.75
     g.neovide_scroll_animation_length = 0.3 -- in seconds
     -- g.neovide_no_idle=v:true
     -- g.neovide_no_idle=v:true

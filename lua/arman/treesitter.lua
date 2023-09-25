@@ -1,2 +1,17 @@
-require'nvim-treesitter.configs'.setup{}
-require'treesitter-context'.setup{}
+require('nvim-treesitter.configs').setup {
+    ensure_installed = {
+        'bash',
+        'c',
+        'cpp',
+        'css',
+        'gdscript',
+        'git-config',
+        'git-rebase',
+        'gitattributes',
+        'gitcommit',
+        'gitignore',
+        'go',
+        'gomod',
+    },
+}
+require('treesitter-context').setup {}

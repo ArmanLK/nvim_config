@@ -9,7 +9,7 @@ local lspconfig = vim.F.npcall(require, 'lspconfig')
 if not lspconfig then
     return
 end
-require 'mason'.setup()
+require('mason').setup()
 
 local autocmd_clear = vim.api.nvim_clear_autocmds
 --local ts_util = require "nvim-lsp-ts-utils"
@@ -57,14 +57,11 @@ local filetype_attach = setmetatable({
         autocmd_format(false)
         -- Display type information
         autocmd_clear { group = augroup_codelens }
-        print('arman.lsp.codelens')
-        vim.api.nvim_create_autocmd(
-            { 'BufEnter', 'BufWritePost', 'CursorHold' },
-            {
-                group = augroup_codelens,
-                callback = require 'arman.lsp.codelens'.refresh_virtlines,
-            }
-        )
+        print 'arman.lsp.codelens'
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'CursorHold' }, {
+            group = augroup_codelens,
+            callback = require('arman.lsp.codelens').refresh_virtlines,
+        })
         vim.keymap.set(
             'n',
             '<leader>tt',
@@ -120,7 +117,7 @@ local custom_attach = function(client, bufnr)
     set('n', 'gT', vim.lsp.buf.type_definition, opts)
     set('n', 'K', vim.lsp.buf.hover, { desc = 'lsp:hover', buffer = bufnr, remap = false })
     set('n', '<leader>gI', handlers.implementation, opts)
-    set('n', '<leader>lr', require 'arman.lsp.codelens'.run, opts)
+    set('n', '<leader>lr', require('arman.lsp.codelens').run, opts)
     set('n', '<leader>rr', '<cmd>LspRestart<cr>', opts)
     set('n', 'gr', vim.lsp.buf.lsp_references, opts)
     set('n', 'gI', vim.lsp.buf.lsp_implementations, opts)
@@ -168,7 +165,7 @@ local servers = {
     lua_ls = {
         settings = {
             Lua = {
-                hint = { enable = inlays, },
+                hint = { enable = inlays },
             },
         },
     },
@@ -177,7 +174,7 @@ local servers = {
     gdscript = {
         flags = {
             debounce_text_changes = 100,
-        }
+        },
     },
     html = true,
     pyright = true,

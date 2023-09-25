@@ -1,2 +1,2 @@
-require 'colorizer'.setup()
-require 'color-picker'.setup()
+require('colorizer').setup()
+require('color-picker').setup()

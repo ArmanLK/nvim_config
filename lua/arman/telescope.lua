@@ -9,4 +9,3 @@ set('n', '<leader>fr', builtin.registers, {})
 set('n', '<leader>fm', builtin.marks, {})
 --set('n', '<leader>fj', builtin.jumps, {})
 set('n', '<leader>fi', builtin.builtin, {})
-

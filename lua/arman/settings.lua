@@ -31,11 +31,11 @@ opt.termguicolors = true
 -- update time (don't know what it does)
 opt.updatetime = 50
 -- colorcolumn
-opt.colorcolumn = "80"
+opt.colorcolumn = '80'
 -- lua line
-require'lualine'.setup{}
+require('lualine').setup {}
 
-vim.cmd[[
+vim.cmd [[
     autocmd vimenter * TSContextEnable
     autocmd vimenter * TSEnable highlight
     "autocmd vimenter * hi Normal ctermbg=NONE guibg=NONE

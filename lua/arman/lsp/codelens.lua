@@ -14,10 +14,10 @@ M.run = function()
         return a.range.start.line < b.range.start.line
     end)
     local _, lens = next(lenses)
-    local client_id = next(vim.lsp.get_active_clients({ bufnr = bufnr }))
+    local client_id = next(vim.lsp.get_active_clients { bufnr = bufnr })
     local client = vim.lsp.get_client_by_id(client_id)
-    client.request("workspace/executeCommand", lens.command, function(...)
-        local result = vim.lsp.handlers["workspace/executeCommand"](...)
+    client.request('workspace/executeCommand', lens.command, function(...)
+        local result = vim.lsp.handlers['workspace/executeCommand'](...)
         vim.lsp.codelens.refresh()
         return result
     end, bufnr)
@@ -32,11 +32,11 @@ end
 M.refresh_virtlines = function()
     local bufnr = vim.api.nvim_get_current_buf()
     local params = { textDocument = vim.lsp.util.make_text_document_params() }
-    vim.lsp.buf_request(bufnr, "textDocument/codeLens", params, function(err, result, _, _)
+    vim.lsp.buf_request(bufnr, 'textDocument/codeLens', params, function(err, result, _, _)
         if err then
             return
         end
-        local ns = vim.api.nvim_create_namespace "custom-lsp-codelens"
+        local ns = vim.api.nvim_create_namespace 'custom-lsp-codelens'
         vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
         if not virtlines_enabled then
             return
@@ -44,19 +44,19 @@ M.refresh_virtlines = function()
         for _, lens in ipairs(result) do
             local title = lens.command.title
             local range = lens.range
-            local prefix = string.rep(" ", lens.range.start.character)
+            local prefix = string.rep(' ', lens.range.start.character)
             local text = prefix .. title
-            local lines = { { { text, "VirtNonText" } } }
+            local lines = { { { text, 'VirtNonText' } } }
             if string.len(text) > 100 then
                 vim.g.something = true
                 lines = {}
                 -- TODO: If we're in ocaml only, do this...
-                local split_text = vim.split(text, "->")
+                local split_text = vim.split(text, '->')
                 for i, line in ipairs(split_text) do
                     if i ~= #split_text then
-                        line = line .. " ->"
+                        line = line .. ' ->'
                     end
-                    table.insert(lines, { { line, "VirtNonText" } })
+                    table.insert(lines, { { line, 'VirtNonText' } })
                 end
             end
             vim.api.nvim_buf_set_extmark(bufnr, ns, range.start.line, 0, {
