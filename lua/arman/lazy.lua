@@ -13,13 +13,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 local plugins = {
     'folke/lazy.nvim',
-    -- lsp,
+    -- lsp
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'simrat39/rust-tools.nvim',
     'folke/neodev.nvim',
-    -- cmp,
+    -- cmp
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
@@ -27,20 +27,19 @@ local plugins = {
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-buffer',
-    -- snippets,
+    -- the godly plenary
+    'nvim-lua/plenary.nvim',
+    -- snippets
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
     'simrat39/inlay-hints.nvim',
     'j-hui/fidget.nvim',
-    'nvim-lua/plenary.nvim',
     { 'nvim-telescope/telescope.nvim', tag = '0.1.0' },
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    -- treesitter,
+    -- treesitter
     'nvim-treesitter/nvim-treesitter',
     'nvim-treesitter/playground',
     'nvim-treesitter/nvim-treesitter-context',
-    -- theme,
+    -- themes
     'ellisonleao/gruvbox.nvim',
     { 'Everblush/everblush.nvim', as = 'everblush' },
     { 'catppuccin/nvim', as = 'catppuccin' },
@@ -50,10 +49,13 @@ local plugins = {
     'ray-x/aurora',
     'sainnhe/sonokai',
     'sainnhe/everforest',
-    -- other,
+    -- other
+    'kyazdani42/nvim-web-devicons',
+    'nvim-lualine/lualine.nvim',
     'ThePrimeagen/harpoon',
     'ziontee113/color-picker.nvim',
     'norcalli/nvim-colorizer.lua',
+    'tanvirtin/vgit.nvim',
 }
 
 require('lazy').setup(plugins)
