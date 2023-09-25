@@ -8,6 +8,8 @@ vim.g.aurora_bold = 1
 vim.g.aurora_darker = 1
 -- colors
 vim.cmd.colorscheme 'aurora'
+-- time
+opt.updatetime = 300
 -- tabs
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -25,7 +27,7 @@ opt.swapfile = false
 opt.backup = false
 -- searching
 opt.hlsearch = false
-opt.incsearch = true
+opt.incsearch = false
 -- termgui colors
 opt.termguicolors = true
 -- update time (don't know what it does)
@@ -40,3 +42,4 @@ vim.cmd [[
     autocmd vimenter * TSEnable highlight
     "autocmd vimenter * hi Normal ctermbg=NONE guibg=NONE
 ]]
+vim.wo.signcolumn = 'yes'
