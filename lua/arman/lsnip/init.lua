@@ -3,6 +3,7 @@ require 'arman.lsnip.lua'
 require 'arman.lsnip.rust'
 require 'arman.lsnip.python'
 require 'arman.lsnip.node'
+require 'arman.lsnip.go'
 require 'arman.lsnip.zig'
 
 local set_key = vim.keymap.set
