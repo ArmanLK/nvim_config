@@ -29,7 +29,7 @@ add('go', {
         {}
     }}
         ]],
-            { c { t 'return err', i(0, '') } }
+            { c(0, { t 'return err', i(0, '') }) }
         )
     ),
     s(
