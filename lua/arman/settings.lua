@@ -27,7 +27,7 @@ opt.swapfile = false
 opt.backup = false
 -- searching
 opt.hlsearch = false
-opt.incsearch = false
+opt.incsearch = true
 -- termgui colors
 opt.termguicolors = true
 -- update time (don't know what it does)
