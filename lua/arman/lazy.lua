@@ -19,6 +19,8 @@ local plugins = {
     'williamboman/mason-lspconfig.nvim',
     'simrat39/rust-tools.nvim',
     'folke/neodev.nvim',
+    -- dap
+    'mfussenegger/nvim-dap',
     -- cmp
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
@@ -34,7 +36,7 @@ local plugins = {
     'rafamadriz/friendly-snippets',
     'simrat39/inlay-hints.nvim',
     'j-hui/fidget.nvim',
-    { 'nvim-telescope/telescope.nvim', tag = '0.1.0' },
+    { 'nvim-telescope/telescope.nvim', tag = '0.1.4' },
     -- treesitter
     'nvim-treesitter/nvim-treesitter',
     'nvim-treesitter/playground',
@@ -55,7 +57,6 @@ local plugins = {
     'ThePrimeagen/harpoon',
     'ziontee113/color-picker.nvim',
     'norcalli/nvim-colorizer.lua',
-    'tanvirtin/vgit.nvim',
 }
 
 require('lazy').setup(plugins)
