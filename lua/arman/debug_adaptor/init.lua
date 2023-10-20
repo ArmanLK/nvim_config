@@ -45,67 +45,71 @@ dap.adapters.godot = {
 }
 
 dap.configurations.cpp = {
-    name = 'Luanch',
-    type = 'lldb',
-    program = function()
-        return vim.fn.input {
-            prompt = 'Path to executable: ',
-            default = vim.fn.getcwd() .. '/',
-            completion = 'file',
-        }
-    end,
-    env = function()
-        local variables = {}
-        for k, v in pairs(vim.fn.environ()) do
-            table.insert(variables, string.format('%s=%s', k, v))
-        end
-        return variables
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    runInTermital = false,
+    {
+        name = 'Luanch',
+        type = 'lldb',
+        program = function()
+            return vim.fn.input {
+                prompt = 'Path to executable: ',
+                default = vim.fn.getcwd() .. '/',
+                completion = 'file',
+            }
+        end,
+        env = function()
+            local variables = {}
+            for k, v in pairs(vim.fn.environ()) do
+                table.insert(variables, string.format('%s=%s', k, v))
+            end
+            return variables
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        runInTermital = false,
+    }
 }
 
 dap.configurations.c = dap.configurations.cpp
 
 dap.configurations.rust = {
-    name = 'Luanch',
-    type = 'lldb',
-    program = function()
-        return vim.fn.input {
-            prompt = 'Path to executable: ',
-            default = vim.fn.getcwd() .. '/target/debug/',
-            completion = 'file',
-        }
-    end,
-    env = function()
-        local variables = {}
-        for k, v in pairs(vim.fn.environ()) do
-            table.insert(variables, string.format('%s=%s', k, v))
-        end
-        return variables
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    runInTermital = false,
-    initCommands = function()
-        local rustc_sysroot = vim.fn.trim(vim.fn.system 'rustc --print sysroot')
-
-        local script_import = 'command script import "' .. rustc_sysroot .. '/lib/rustlib/etc/lldb_lookup.py"'
-        local commands_file = rustc_sysroot .. '/lib/rustlib/etc/lldb_commands'
-
-        local commands = {}
-        local file = io.open(commands_file, 'r')
-        if file then
-            for line in file:lines() do
-                table.insert(commands, line)
+    {
+        name = 'Luanch',
+        type = 'lldb',
+        program = function()
+            return vim.fn.input {
+                prompt = 'Path to executable: ',
+                default = vim.fn.getcwd() .. '/target/debug/',
+                completion = 'file',
+            }
+        end,
+        env = function()
+            local variables = {}
+            for k, v in pairs(vim.fn.environ()) do
+                table.insert(variables, string.format('%s=%s', k, v))
             end
-            file:close()
-        end
-        table.insert(commands, 1, script_import)
+            return variables
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        runInTermital = false,
+        initCommands = function()
+            local rustc_sysroot = vim.fn.trim(vim.fn.system 'rustc --print sysroot')
 
-        return commands
-    end,
+            local script_import = 'command script import "' .. rustc_sysroot .. '/lib/rustlib/etc/lldb_lookup.py"'
+            local commands_file = rustc_sysroot .. '/lib/rustlib/etc/lldb_commands'
+
+            local commands = {}
+            local file = io.open(commands_file, 'r')
+            if file then
+                for line in file:lines() do
+                    table.insert(commands, line)
+                end
+                file:close()
+            end
+            table.insert(commands, 1, script_import)
+
+            return commands
+        end,
+    }
 }
 
 -- python again lol
