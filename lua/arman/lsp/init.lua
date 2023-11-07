@@ -162,13 +162,7 @@ end
 
 local servers = {
     bashls = true,
-    lua_ls = {
-        settings = {
-            Lua = {
-                hint = { enable = inlays },
-            },
-        },
-    },
+    lua_ls = true,
     astro = true,
     eslint = false,
     gdscript = {
@@ -178,6 +172,7 @@ local servers = {
     },
     html = true,
     pyright = true,
+    ruff_lsp = true,
     pylsp = false,
     marksman = true,
     vimls = false,

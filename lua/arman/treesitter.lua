@@ -12,6 +12,8 @@ require('nvim-treesitter.configs').setup {
         'gitignore',
         'go',
         'gomod',
+        'ocaml',
+        'python',
     },
     sync_install = false,
     modules = {},
