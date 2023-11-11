@@ -7,7 +7,8 @@ vim.g.aurora_transparent = 1
 vim.g.aurora_bold = 1
 vim.g.aurora_darker = 1
 -- colors
-vim.cmd.colorscheme 'aurora'
+vim.cmd.colorscheme 'gruvbox'
+opt.background = 'dark'
 -- time
 opt.updatetime = 300
 -- tabs
