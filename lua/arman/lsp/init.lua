@@ -216,6 +216,7 @@ local servers = {
             debounce_text_changes = 200,
         },
     },
+    csharp_ls = true,
     rust_analyzer = true,
     racket_langserver = false,
     elmls = false,
