@@ -65,7 +65,7 @@ dap.configurations.cpp = {
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
         runInTermital = false,
-    }
+    },
 }
 
 dap.configurations.c = dap.configurations.cpp
@@ -109,7 +109,7 @@ dap.configurations.rust = {
 
             return commands
         end,
-    }
+    },
 }
 
 -- python again lol

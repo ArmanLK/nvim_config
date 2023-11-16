@@ -16,11 +16,3 @@ add('zig', {
         })
     ),
 })
--- add('lua', {
---     s('req', fmt([[local {} = require '{}']], {
---         f(function(name)
---             local parts = vim.split(name[1][1], '.', true)
---             return parts[#parts] or ""
---         end, { 1 }), i(1)
---     }))
--- })
