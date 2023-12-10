@@ -1,22 +1,25 @@
-local mark = require 'harpoon.mark'
-local ui = require 'harpoon.ui'
--- local term = require 'harpoon.term'
--- local tmux = require 'harpoon.tmux'
--- local cmd_ui = require 'harpoon.cmd-ui'
+local harpoon = require 'harpoon'
 
-require('telescope').load_extension 'harpoon'
+---@diagnostic disable-next-line: missing-parameter
+harpoon:setup()
+--TODO: probably create my own harpoon list.
 
-vim.keymap.set('n', '<leader>ha', mark.add_file)
-vim.keymap.set('n', '<leader>he', ui.toggle_quick_menu)
+vim.keymap.set('n', '<leader>ha', function()
+    harpoon:list():append()
+end)
+vim.keymap.set('n', '<leader>he', function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+
 vim.keymap.set('n', '<leader>hz', function()
-    ui.nav_file(1)
+    harpoon:list():select(1)
 end)
 vim.keymap.set('n', '<leader>hx', function()
-    ui.nav_file(2)
+    harpoon:list():select(2)
 end)
 vim.keymap.set('n', '<leader>hc', function()
-    ui.nav_file(3)
+    harpoon:list():select(3)
 end)
 vim.keymap.set('n', '<leader>hv', function()
-    ui.nav_file(4)
+    harpoon:list():select(4)
 end)

@@ -54,7 +54,7 @@ local plugins = {
     -- other
     'kyazdani42/nvim-web-devicons',
     'nvim-lualine/lualine.nvim',
-    'ThePrimeagen/harpoon',
+    { 'ThePrimeagen/harpoon', branch = 'harpoon2' },
     'ziontee113/color-picker.nvim',
     'norcalli/nvim-colorizer.lua',
 }
