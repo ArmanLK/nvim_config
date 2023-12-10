@@ -117,10 +117,10 @@ local custom_attach = function(client, bufnr)
     set('n', 'gT', vim.lsp.buf.type_definition, opts)
     set('n', 'K', vim.lsp.buf.hover, { desc = 'lsp:hover', buffer = bufnr, remap = false })
     set('n', '<leader>gI', handlers.implementation, opts)
-    set('n', '<leader>lr', require('arman.lsp.codelens').run, opts)
+    --set('n', '<leader>lr', require('arman.lsp.codelens').run, opts)
     set('n', '<leader>rr', '<cmd>LspRestart<cr>', opts)
-    set('n', 'gr', vim.lsp.buf.lsp_references, opts)
-    set('n', 'gI', vim.lsp.buf.lsp_implementations, opts)
+    set('n', '<leader>lr', vim.lsp.buf.references, opts)
+    set('n', '<leader>li', vim.lsp.buf.implementation, opts)
     vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.documentHighlightProvider then
