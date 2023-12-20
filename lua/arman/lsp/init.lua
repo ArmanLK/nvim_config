@@ -225,6 +225,7 @@ local servers = {
     jsonls = true,
     tsserver = true,
     zls = true,
+    ols = true,
 }
 
 ---Sets servers up
