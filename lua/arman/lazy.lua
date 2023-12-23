@@ -43,9 +43,9 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter-context',
     -- themes
     'ellisonleao/gruvbox.nvim',
-    { 'Everblush/everblush.nvim', as = 'everblush' },
-    { 'catppuccin/nvim', as = 'catppuccin' },
-    { 'rose-pine/neovim', as = 'rose-pine' },
+    { 'Everblush/everblush.nvim', name = 'everblush' },
+    { 'catppuccin/nvim', name = 'catppuccin' },
+    { 'rose-pine/neovim', name = 'rose-pine' },
     'folke/tokyonight.nvim',
     'kdheepak/monochrome.nvim',
     'ray-x/aurora',
