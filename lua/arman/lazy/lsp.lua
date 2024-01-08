@@ -10,22 +10,20 @@ end
 local custom_attach = function(client, bufnr)
     _ = client
     local opts = { buffer = bufnr, remap = false }
-    local set = vim.keymap.set
-    set('n', '<leader>ld', vim.diagnostic.open_float, opts)
-    set('n', '[d', vim.diagnostic.goto_next, opts)
-    set('n', ']d', vim.diagnostic.goto_prev, opts)
-    set('i', '<c-s>', vim.lsp.buf.signature_help, opts)
-    set('n', '<leader>ln', vim.lsp.buf.rename, opts)
-    set('n', '<leader>la', vim.lsp.buf.code_action, opts)
-    set('n', '<leader>lf', vim.lsp.buf.format, opts)
-    set('n', 'gd', vim.lsp.buf.definition, opts)
-    set('n', 'gD', vim.lsp.buf.declaration, opts)
-    set('n', 'gT', vim.lsp.buf.type_definition, opts)
-    set('n', 'K', vim.lsp.buf.hover, { desc = 'lsp:hover', buffer = bufnr, remap = false })
-    --set('n', '<leader>lr', require('arman.lsp.codelens').run, opts)
-    set('n', '<leader>rr', '<cmd>LspRestart<cr>', opts)
-    set('n', '<leader>lr', vim.lsp.buf.references, opts)
-    set('n', '<leader>li', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, opts)
+    --vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
+    --vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'lsp:hover', buffer = bufnr, remap = false })
+    vim.keymap.set('n', '<leader>rr', '<cmd>LspRestart<cr>', opts)
+    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, opts)
     vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 end
 

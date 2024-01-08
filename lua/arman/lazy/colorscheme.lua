@@ -2,7 +2,7 @@ return {
     {
         'rose-pine/neovim',
         name = 'rose-pine',
-        priority = 100,
+        priority = 1000,
         lazy = false,
         config = function()
             vim.cmd.colorscheme 'rose-pine'
