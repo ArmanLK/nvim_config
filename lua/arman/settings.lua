@@ -1,46 +1,30 @@
-local opt = vim.opt
 -- leader
 vim.g.mapleader = ' '
--- aurora opts
-vim.g.aurora_italic = 1
-vim.g.aurora_transparent = 1
-vim.g.aurora_bold = 1
-vim.g.aurora_darker = 1
--- colors
-vim.cmd.colorscheme 'gruvbox'
-opt.background = 'dark'
 -- time
-opt.updatetime = 300
+vim.opt.updatetime = 300
 -- tabs
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-opt.autoindent = true
-opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 -- lines
-opt.scrolloff = 10
-opt.number = true
-opt.relativenumber = true
-opt.wrap = false
+vim.opt.scrolloff = 10
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.wrap = false
 -- runtime files
-opt.swapfile = false
-opt.backup = false
+vim.opt.swapfile = false
+vim.opt.backup = false
 -- searching
-opt.hlsearch = false
-opt.incsearch = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 -- termgui colors
-opt.termguicolors = true
+vim.opt.termguicolors = true
 -- update time (don't know what it does)
-opt.updatetime = 50
+vim.opt.updatetime = 50
 -- colorcolumn
-opt.colorcolumn = '80'
--- lua line
-require('lualine').setup {}
+vim.opt.colorcolumn = '80'
 
-vim.cmd [[
-    autocmd vimenter * TSContextEnable
-    autocmd vimenter * TSEnable highlight
-    "autocmd vimenter * hi Normal ctermbg=NONE guibg=NONE
-]]
 vim.wo.signcolumn = 'yes'
