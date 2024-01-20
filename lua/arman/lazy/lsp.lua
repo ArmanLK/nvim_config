@@ -84,6 +84,7 @@ local servers = {
         },
     },
     csharp_ls = true,
+    fsautocomplete = true,
     rust_analyzer = true,
     racket_langserver = false,
     elmls = false,
