@@ -36,7 +36,7 @@ return {
         }
 
         require('treesitter-context').setup {
-            mode = 'topline',
+            mode = 'cursor',
             enable = true,
             zindex = 20,
             max_lines = 0,

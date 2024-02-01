@@ -27,4 +27,4 @@ vim.opt.updatetime = 50
 -- colorcolumn
 vim.opt.colorcolumn = '80'
 
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = 'auto'

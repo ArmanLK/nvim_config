@@ -20,7 +20,6 @@ vim.keymap.set('n', '<leader>tf', vim.cmd.tabfirst)
 vim.keymap.set('n', '<leader>tc', vim.cmd.tabclose)
 vim.keymap.set('n', '<leader>tN', vim.cmd.tabnew)
 
---#region others
 vim.keymap.set('n', '<c-d>', '<c-d>zz')
 vim.keymap.set('n', '<c-u>', '<c-u>zz')
 vim.keymap.set('i', '<c-c>', '<Esc>')
@@ -40,4 +39,3 @@ vim.keymap.set({ 'n', 'v', 's', 'x', 'i' }, '<Up>', '<Esc>')
 vim.keymap.set({ 'n', 'v', 's', 'x', 'i' }, '<Down>', '<Esc>')
 vim.keymap.set({ 'n', 'v', 's', 'x', 'i' }, '<Left>', '<Esc>')
 vim.keymap.set({ 'n', 'v', 's', 'x', 'i' }, '<Right>', '<Esc>')
---#endregion
