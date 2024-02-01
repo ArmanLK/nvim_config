@@ -18,8 +18,13 @@ return {
 
         dap.listeners.after['event_terminated']['me'] = function()
             for _, keymap in pairs(keymap_restore) do
-                vim.api.nvim_buf_set_keymap(keymap.buffer, keymap.mode, keymap.lhs, keymap.rhs,
-                    { silent = keymap.silent == 1 })
+                vim.api.nvim_buf_set_keymap(
+                    keymap.buffer,
+                    keymap.mode,
+                    keymap.lhs,
+                    keymap.rhs,
+                    { silent = keymap.silent == 1 }
+                )
             end
             keymap_restore = {}
         end
@@ -67,7 +72,7 @@ return {
 
         dap.configurations.cpp = {
             {
-                request = "launch",
+                request = 'launch',
                 name = 'Luanch',
                 type = 'lldb',
                 program = function()
