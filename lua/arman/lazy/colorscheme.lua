@@ -3,22 +3,54 @@ return {
         'rose-pine/neovim',
         name = 'rose-pine',
         priority = 1000,
-        lazy = false,
         config = function()
-            vim.cmd.colorscheme 'rose-pine'
+            require('rose-pine').setup {
+                dark_variant = 'main',
+            }
         end,
     },
     {
         'ellisonleao/gruvbox.nvim',
-        lazy = true,
+        config = function()
+            require('gruvbox').setup {
+                contrast = 'hard',
+                transparent_mode = true,
+            }
+        end,
     },
-    { 'Everblush/everblush.nvim', name = 'everblush', lazy = true },
-    { 'catppuccin/nvim', name = 'catppuccin', lazy = true },
-    { 'folke/tokyonight.nvim', lazy = true },
-    { 'kdheepak/monochrome.nvim', lazy = true },
+    {
+        'Everblush/everblush.nvim',
+        name = 'everblush',
+        config = function()
+            require('everblush').setup {
+                transparent_background = true,
+            }
+        end,
+    },
+    {
+        'catppuccin/nvim',
+        name = 'catppuccin',
+        config = function()
+            require('catppuccin').setup {
+                transparent_background = true,
+                flavour = 'mocha',
+            }
+        end,
+    },
+    {
+        'folke/tokyonight.nvim',
+        config = function()
+            require('tokyonight').setup {
+                style = 'nigth',
+                transparent = true,
+                terminal_colors = true,
+            }
+            vim.cmd.colorscheme 'tokyonight'
+        end,
+    },
+    { 'kdheepak/monochrome.nvim' },
     {
         'ray-x/aurora',
-        lazy = true,
         config = function()
             vim.g.aurora_italic = 1
             vim.g.aurora_transparent = 1
@@ -26,6 +58,18 @@ return {
             vim.g.aurora_darker = 1
         end,
     },
-    { 'sainnhe/sonokai', lazy = true },
-    { 'sainnhe/everforest', lazy = true },
+    {
+        'sainnhe/sonokai',
+        config = function()
+            vim.g.sonokai_style = 'atlantis' -- 'defualt', 'atlantis', 'shusia', 'maia', 'espresso'
+            vim.g.sonokai_transparent_background = 1
+        end,
+    },
+    {
+        'sainnhe/everforest',
+        config = function()
+            vim.g.everforest_background = 'hard' -- 'hard','medium', 'soft'
+            vim.g.everforest_transparent_background = 1
+        end,
+    },
 }
