@@ -11,8 +11,8 @@ local custom_attach = function(client, bufnr)
     _ = client
     local opts = { buffer = bufnr, remap = false }
     vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, opts)
-    --vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
-    --vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
     vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, opts)
@@ -94,6 +94,7 @@ local servers = {
     tsserver = true,
     zls = true,
     ols = true,
+    texlab = true,
 }
 
 return {
