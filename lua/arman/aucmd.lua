@@ -22,11 +22,11 @@ vim.api.nvim_create_autocmd('BufEnter', {
     group = 'TexAucmd',
     pattern = '*.tex',
     callback = function()
-        vim.api.nvim_create_user_command('PdfLatex', '!pdflatex  \\\\nonstopmode\\\\input new.tex', { bang = true })
+        vim.api.nvim_create_user_command('PdfLatex', '!pdflatex  \\\\nonstopmode\\\\input %', { bang = true })
     end,
 })
 vim.api.nvim_create_autocmd('BufWritePre', {
     group = 'TexAucmd',
     pattern = '*.tex',
-    command = 'norm vggG=<cr>',
+    command = 'norm vggG=zz<cr>',
 })

@@ -135,7 +135,7 @@ return {
             require('inlay-hints').setup {
                 -- renderer to use
                 -- possible options are dynamic, eol, virtline and custom
-                renderer = 'inlay-hints/render/dynamic',
+                renderer = 'inlay-hints/render/eol',
 
                 hints = {
                     parameter = {
