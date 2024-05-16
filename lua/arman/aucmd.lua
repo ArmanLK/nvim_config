@@ -16,4 +16,3 @@ vim.api.nvim_create_autocmd('BufEnter', {
         vim.cmd 'TSContextEnable'
     end,
 })
-

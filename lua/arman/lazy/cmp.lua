@@ -38,7 +38,10 @@ return {
                     ['<C-f>'] = cmp.mapping.scroll_docs(10),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
-                    ['<C-k>'] = cmp.mapping.confirm { select = true },
+                    ['<C-k>'] = cmp.mapping.confirm {
+                        behavior = cmp.ConfirmBehavior.Insert,
+                        select = true,
+                    },
                 },
                 sources = cmp.config.sources({
                     { name = 'nvim_lua' },

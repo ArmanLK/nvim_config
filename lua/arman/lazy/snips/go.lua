@@ -1,3 +1,5 @@
+require('luasnip.session.snippet_collection').clear_snippets 'go'
+
 local ls = require 'luasnip'
 local s, t, c = ls.s, ls.text_node, ls.choice_node
 local i = ls.insert_node

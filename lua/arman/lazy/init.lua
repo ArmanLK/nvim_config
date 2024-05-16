@@ -6,13 +6,13 @@ return {
         'nvim-lualine/lualine.nvim',
         config = function()
             require('lualine').setup {}
-        end
+        end,
     },
     {
         'norcalli/nvim-colorizer.lua',
         config = function()
             require('colorizer').setup()
-        end
+        end,
     },
 
     {
@@ -20,5 +20,5 @@ return {
         config = function()
             require('color-picker').setup()
         end,
-    }
+    },
 }
