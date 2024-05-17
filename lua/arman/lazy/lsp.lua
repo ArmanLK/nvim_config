@@ -10,6 +10,10 @@ end
 local custom_attach = function(client, bufnr)
     _ = client
     local opts = { buffer = bufnr, remap = false }
+    if client.server_capabilities.inlayHintProvider then
+        print("lol");
+        vim.lsp.inlay_hint.enable(bufnr, true)
+    end
     vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, opts)
     vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
     vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
@@ -100,7 +104,7 @@ local servers = {
 return {
     'williamboman/mason.nvim',
     'folke/neodev.nvim',
-    'simrat39/inlay-hints.nvim',
+    -- 'simrat39/inlay-hints.nvim',
     {
         'neovim/nvim-lspconfig',
         dependecies = {
@@ -132,51 +136,6 @@ return {
                 lspconfig[server].setup(config)
                 ::continue::
             end
-            require('inlay-hints').setup {
-                -- renderer to use
-                -- possible options are dynamic, eol, virtline and custom
-                renderer = 'inlay-hints/render/eol',
-
-                hints = {
-                    parameter = {
-                        show = true,
-                        --highlight = "whitespace",
-                    },
-                    type = {
-                        show = true,
-                    },
-                },
-                -- Only show inlay hints for the current line
-                only_current_line = false,
-
-                eol = {
-                    -- whether to align to the extreme right or not
-                    right_align = false,
-                    -- padding from the right if right_align is true
-                    right_align_padding = 7,
-                    parameter = {
-                        separator = ' ',
-                        format = function(hints)
-                            return string.format('<- (%s)', hints)
-                        end,
-                    },
-                    type = {
-                        separator = ' ',
-                        format = function(hints)
-                            return string.format('=> %s', hints)
-                        end,
-                    },
-                },
-            }
-
-            -- TODO: this still doesn't work
-            vim.api.nvim_create_autocmd('LspAttach', {
-                group = vim.api.nvim_create_augroup('my-inlay-hints', {}),
-                callback = function(args)
-                    local client = vim.lsp.get_client_by_id(args.data.client_id)
-                    require('inlay-hints').on_attach(client, args.buf)
-                end,
-            })
         end,
     },
 }
