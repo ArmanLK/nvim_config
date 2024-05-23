@@ -1,4 +1,3 @@
-vim.opt_local.expandtab = true
-
+vim.cmd.syntax 'off'
 vim.cmd 'TSEnable highlight'
 vim.cmd 'TSContextEnable'

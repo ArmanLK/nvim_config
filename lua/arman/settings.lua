@@ -32,3 +32,5 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = '80'
 
 vim.wo.signcolumn = 'yes'
+
+vim.cmd.syntax 'on'
