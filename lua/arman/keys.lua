@@ -20,6 +20,13 @@ vim.keymap.set('n', '<leader>tf', vim.cmd.tabfirst)
 vim.keymap.set('n', '<leader>tc', vim.cmd.tabclose)
 vim.keymap.set('n', '<leader>tN', vim.cmd.tabnew)
 
+-- splits
+vim.keymap.set('n', '<M-,>', '<c-w>5<')
+vim.keymap.set('n', '<M-.>', '<c-w>5>')
+vim.keymap.set('n', '<M-t>', '<c-w>5+')
+vim.keymap.set('n', '<M-s>', '<c-w>5-')
+
+-- some quality of life ones
 vim.keymap.set('n', '<c-d>', '<c-d>zz')
 vim.keymap.set('n', '<c-u>', '<c-u>zz')
 vim.keymap.set('i', '<c-c>', '<Esc>')
@@ -29,7 +36,7 @@ vim.keymap.set('i', '<c-c>', '<Esc>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '>-2<CR>gv=gv")
 
--- copy things
+-- copy things (these are amazing)
 vim.keymap.set('x', '<leader>p', [["_dP]])
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 vim.keymap.set('n', '<leader>Y', [["+Y]])

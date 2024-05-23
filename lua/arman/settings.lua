@@ -2,6 +2,10 @@
 vim.g.mapleader = ' '
 -- time
 vim.opt.updatetime = 300
+-- inccommand
+vim.opt.inccommand = 'split'
+-- where to put buffer of the new command
+vim.opt.splitbelow = true
 -- tabs
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -27,4 +31,4 @@ vim.opt.updatetime = 50
 -- colorcolumn
 vim.opt.colorcolumn = '80'
 
-vim.wo.signcolumn = 'auto'
+vim.wo.signcolumn = 'yes'
