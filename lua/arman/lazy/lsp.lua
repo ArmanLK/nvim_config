@@ -11,8 +11,7 @@ local custom_attach = function(client, bufnr)
     _ = client
     local opts = { buffer = bufnr, remap = false }
     if client.server_capabilities.inlayHintProvider then
-        print("lol");
-        vim.lsp.inlay_hint.enable(bufnr, true)
+        vim.lsp.inlay_hint.enable(true)
     end
     vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, opts)
     vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
