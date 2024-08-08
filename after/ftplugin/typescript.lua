@@ -1,3 +1,4 @@
+vim.cmd 'TSEnable highlight'
 vim.cmd 'TSContextEnable'
 
 vim.opt_local.tabstop = 2
