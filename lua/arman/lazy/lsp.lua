@@ -34,7 +34,6 @@ local servers = {
     bashls = true,
     lua_ls = true,
     astro = true,
-    eslint = false,
     gdscript = {
         flags = {
             debounce_text_changes = 100,
@@ -86,18 +85,21 @@ local servers = {
             debounce_text_changes = 200,
         },
     },
-    csharp_ls = true,
-    fsautocomplete = true,
     rust_analyzer = true,
     racket_langserver = false,
     elmls = false,
-    cssls = true,
+    cssls = false,
+    tailwindcss = true,
     perlnavigator = false,
     jsonls = true,
-    tsserver = true,
+    --tsserver = true,
+    vtsls = true,
+    eslint = true,
     zls = true,
     ols = true,
     texlab = true,
+
+    glsl_analyzer = true,
 }
 
 return {
