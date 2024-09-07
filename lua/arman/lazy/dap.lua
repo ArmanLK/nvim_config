@@ -1,36 +1,66 @@
 return {
-    'mfussenegger/nvim-dap',
+    'rcarriga/nvim-dap-ui',
+
+    dependencies = {
+        'mfussenegger/nvim-dap',
+        'nvim-neotest/nvim-nio',
+    },
+
     config = function()
         local dap = require 'dap'
-        local keymap_restore = {}
-        dap.listeners.after['event_initialized']['me'] = function()
-            for _, buf in pairs(vim.api.nvim_list_bufs()) do
-                local keymaps = vim.api.nvim_buf_get_keymap(buf, 'n')
-                for _, keymap in pairs(keymaps) do
-                    if keymap.lhs == 'K' then
-                        table.insert(keymap_restore, keymap)
-                        vim.api.nvim_buf_del_keymap(buf, 'n', 'K')
-                    end
-                end
-            end
-            vim.api.nvim_set_keymap('n', 'K', '<Cmd>lua require("dap.ui.widgets").hover()<CR>', { silent = true })
-        end
+        local dapui = require 'dapui'
 
-        dap.listeners.after['event_terminated']['me'] = function()
-            for _, keymap in pairs(keymap_restore) do
-                vim.api.nvim_buf_set_keymap(
-                    keymap.buffer,
-                    keymap.mode,
-                    keymap.lhs,
-                    keymap.rhs,
-                    { silent = keymap.silent == 1 }
-                )
-            end
-            keymap_restore = {}
+        vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, {
+            desc = 'toggle [d]ebugger [b]reakpoint',
+        })
+        vim.keymap.set('n', '<leader>dl', '<cmd>DapNew<cr>', {
+            desc = '[d]ebugger [l]aunch/attach',
+        })
+        vim.keymap.set('n', '<leader>dr', dap.restart, {
+            desc = '[d]ebugger [r]estart',
+        })
+        vim.keymap.set('n', '<leader>dc', dap.run_to_cursor, {
+            desc = '[d]ebugger run to [c]ursor',
+        })
+        vim.keymap.set('n', '<leader>dn', dap.continue, {
+            desc = '[d]ebugger co[n]tinue',
+        })
+        vim.keymap.set('n', '<leader>di', dap.step_into, {
+            desc = '[d]ebugger step [i]nto',
+        })
+        vim.keymap.set('n', '<leader>do', dap.step_over, {
+            desc = '[d]ebugger step [o]ver',
+        })
+        vim.keymap.set('n', '<leader>du', dap.step_out, {
+            desc = '[d]ebugger step o[u]t',
+        })
+        vim.keymap.set('n', '<leader>dk', dap.step_back, {
+            desc = '[d]ebugger step bac[k]',
+        })
+
+        vim.keymap.set('n', '<leader>?', function()
+            ---@diagnostic disable-next-line: param-type-mismatch, missing-fields
+            dapui.eval(nil, { enter = true })
+        end)
+
+        dapui.setup()
+
+        dap.listeners.before.attach.dapui_config = function()
+            dapui.open()
+        end
+        dap.listeners.before.launch.dapui_config = function()
+            dapui.open()
+        end
+        dap.listeners.before.event_terminated.dapui_config = function()
+            dapui.close()
+        end
+        dap.listeners.before.event_exited.dapui_config = function()
+            dapui.close()
         end
 
         dap.adapters.lldb = {
             type = 'executable',
+            command = '/bin/lldb-dap',
             name = 'lldb',
         }
 
@@ -67,18 +97,27 @@ return {
         dap.adapters.godot = {
             type = 'server',
             host = '127.0.0.1',
-            port = 6007,
+            port = 6006,
+        }
+
+        dap.adapters.delve = {
+            type = 'server',
+            port = '${port}',
+            executable = 'dlv',
+            args = { 'dap', '-l', '127.0.0.1:${port}' },
+            -- If I was on window (not gonna happen)
+            --detached = false,
         }
 
         dap.configurations.cpp = {
             {
-                request = 'launch',
                 name = 'Luanch',
+                request = 'launch',
                 type = 'lldb',
                 program = function()
                     return vim.fn.input {
                         prompt = 'Path to executable: ',
-                        default = vim.fn.getcwd() .. '/',
+                        default = vim.fn.getcwd(),
                         completion = 'file',
                     }
                 end,
@@ -96,6 +135,31 @@ return {
         }
 
         dap.configurations.c = dap.configurations.cpp
+
+        dap.configurations.zig = {
+            {
+                name = 'Luanch',
+                request = 'launch',
+                type = 'lldb',
+                program = function()
+                    return vim.fn.input {
+                        prompt = 'Path to executable: ',
+                        default = vim.fn.getcwd() .. '/zig-out/bin/',
+                        completion = 'file',
+                    }
+                end,
+                env = function()
+                    local variables = {}
+                    for k, v in pairs(vim.fn.environ()) do
+                        table.insert(variables, string.format('%s=%s', k, v))
+                    end
+                    return variables
+                end,
+                cwd = '${workspaceFolder}',
+                stopOnEntry = false,
+                runInTermital = false,
+            },
+        }
 
         dap.configurations.rust = {
             {
@@ -120,11 +184,13 @@ return {
                 stopOnEntry = false,
                 runInTermital = false,
                 initCommands = function()
+                    -- Find out where to look for the pretty printer Python module
                     local rustc_sysroot = vim.fn.trim(vim.fn.system 'rustc --print sysroot')
 
                     local script_import = 'command script import "'
                         .. rustc_sysroot
                         .. '/lib/rustlib/etc/lldb_lookup.py"'
+
                     local commands_file = rustc_sysroot .. '/lib/rustlib/etc/lldb_commands'
 
                     local commands = {}
@@ -171,6 +237,30 @@ return {
                 name = 'Launch scene',
                 project = '${workspaceFolder}',
                 launch_scene = true,
+            },
+        }
+
+        dap.configurations.go = {
+            {
+                type = 'delve',
+                name = 'Debug',
+                request = 'launch',
+                program = '${file}',
+            },
+            {
+                type = 'delve',
+                name = 'Debug test', -- configuration for debugging test files
+                request = 'launch',
+                mode = 'test',
+                program = '${file}',
+            },
+            -- works with go.mod packages and sub packages
+            {
+                type = 'delve',
+                name = 'Debug test (go.mod)',
+                request = 'launch',
+                mode = 'test',
+                program = './${relativeFileDirname}',
             },
         }
     end,
