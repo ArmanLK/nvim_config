@@ -27,6 +27,7 @@ return {
                     'rust',
                     'toml',
                     'typescript',
+                    'vimdoc',
                     'yaml',
                     'zig',
                 },
@@ -35,7 +36,11 @@ return {
                 auto_install = true,
                 ignore_install = {},
             }
-
+        end,
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        config = function()
             require('treesitter-context').setup {
                 mode = 'cursor',
                 enable = true,
@@ -48,5 +53,4 @@ return {
             }
         end,
     },
-    'nvim-treesitter/nvim-treesitter-context',
 }
