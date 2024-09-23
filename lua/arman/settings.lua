@@ -33,4 +33,4 @@ vim.opt.colorcolumn = '80'
 
 vim.wo.signcolumn = 'yes'
 
-vim.cmd.syntax 'on'
+--vim.cmd.syntax 'on'
