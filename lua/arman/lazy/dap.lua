@@ -58,9 +58,15 @@ return {
             dapui.close()
         end
 
+        --dap.adapters.lldb = {
+        --    type = 'executable',
+        --    command = '/bin/lldb-dap',
+        --    name = 'lldb',
+        --}
+
         dap.adapters.lldb = {
             type = 'executable',
-            command = '/bin/lldb-dap',
+            command = '/bin/lldb-vscode',
             name = 'lldb',
         }
 
