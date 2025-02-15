@@ -116,10 +116,7 @@ return {
         config = function()
             local lspconfig = require 'lspconfig'
 
-            require('neodev').setup {
-                lspconfig = true,
-                pathStrict = true,
-            }
+            require('neodev').setup(require('neodev.config').defaults)
 
             require('mason').setup()
 

@@ -17,7 +17,7 @@ vim.opt.smartindent = true
 vim.opt.scrolloff = 10
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 -- runtime files
 vim.opt.swapfile = false
 vim.opt.backup = false
