@@ -1,4 +1,4 @@
 vim.cmd 'TSEnable highlight'
-vim.cmd 'TSContextEnable'
+vim.cmd 'TSContext enable'
 
 vim.opt_local.shiftwidth = 2

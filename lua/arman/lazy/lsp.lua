@@ -103,23 +103,34 @@ local servers = {
 }
 
 return {
-    'williamboman/mason.nvim',
-    'folke/neodev.nvim',
-    -- 'simrat39/inlay-hints.nvim',
+    {
+        'williamboman/mason.nvim',
+        config = function()
+            require('mason').setup()
+        end,
+    },
+    {
+        'folke/lazydev.nvim',
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+        enabled = function(root_dir)
+            _ = root_dir
+            return vim.g.lazydev_enabled == nil and true or vim.g.lazydev_enabled
+        end,
+    },
     {
         'neovim/nvim-lspconfig',
         dependecies = {
             'williamboman/mason.nvim',
-            'folke/neodev.nvim',
-            'simrat39/inlay-hints.nvim',
+            'folke/lazydev.nvim',
         },
         config = function()
-            local lspconfig = require 'lspconfig'
-
-            require('neodev').setup(require('neodev.config').defaults)
-
-            require('mason').setup()
-
             for server, config in pairs(servers) do
                 if not config then
                     goto continue
@@ -131,7 +142,8 @@ return {
                     on_init = custom_init,
                     on_attach = custom_attach,
                 }, config)
-                lspconfig[server].setup(config)
+                vim.lsp.config(server, config)
+                vim.lsp.enable(server)
                 ::continue::
             end
         end,

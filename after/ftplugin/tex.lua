@@ -3,4 +3,4 @@ vim.api.nvim_create_user_command('LuaLatex', '!lualatex  \\\\nonstopmode\\\\inpu
 vim.api.nvim_create_user_command('XeLatex', '!xelatex   \\\\nonstopmode\\\\input %', { bang = true })
 
 vim.cmd 'TSDisable Highlight'
-vim.cmd 'TSContextDisable'
+vim.cmd 'TSContext disable'
