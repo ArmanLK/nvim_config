@@ -38,19 +38,4 @@ return {
             }
         end,
     },
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        config = function()
-            require('treesitter-context').setup {
-                mode = 'cursor',
-                enable = true,
-                zindex = 20,
-                max_lines = 0,
-                trim_scope = 'outer',
-                line_numbers = true,
-                min_window_height = 0,
-                multiline_threshold = 20,
-            }
-        end,
-    },
 }
